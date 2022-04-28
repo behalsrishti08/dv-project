@@ -1,100 +1,100 @@
-﻿country ,rate
-Australia,-63.976
-Australia,241.096
-Australia,231.834
-Australia,235.707
-Australia,-3.747
-Australia,7.353
-Australia,-89.742
-Australia,154.665
-Australia,24.229
-Brazil,0.026
-Brazil,2.136
-Brazil,8.217
-Brazil,-0.338
-Brazil,-8.026
-Brazil,-2.653
-Brazil,-5.819
-Brazil,2.12
-Brazil,6.794
-Canada,0.441
-Canada,0.764
-Canada,7.092
-Canada,-2.678
-Canada,-41.306
-Canada,4.281
-Canada,-13.316
-Canada,-40.855
-Canada,-16.734
-China,2167.82
-China,254.236
-China,244.833
-China,-353.373
-China,-449.469
-China,-1560.064
-China,654.879
-China,945.486
-China,899.768
-Colombia,91.498
-Colombia,25.733
-Colombia,-28.187
-Colombia,24.621
-Colombia,-24.21
-Colombia,39.661
-Colombia,0.296
-Colombia,-50.052
-Colombia,-15.05
-India,-19.336
-India,50.85
-India,7.906
-India,159.607
-India,134.379
-India,33.728
-India,27.922
-India,225.635
-India,-19.114
-Indonesia,535.273
-Indonesia,223.604
-Indonesia,607.882
-Indonesia,-113.105
-Indonesia,23.776
-Indonesia,-36.79
-Indonesia,34.611
-Indonesia,661.494
-Indonesia,357.917
-Mexico,23.832
-Mexico,-22.632
-Mexico,-3.036
-Mexico,1.07
-Mexico,-4.456
-Mexico,-9.312
-Mexico,15.021
-Mexico,-7.962
-Mexico,-4.2
-Thailand,12.121
-Thailand,-14.413
-Thailand,-0.829
-Thailand,-0.802
-Thailand,-8.768
-Thailand,5.193
-Thailand,-2.322
-Thailand,-4.068
-Thailand,-2.677
-United Kingdom,1.242
-United Kingdom,-11.039
-United Kingdom,-30.349
-United Kingdom,-7.957
-United Kingdom,-22.155
-United Kingdom,-31.996
-United Kingdom,-7.887
-United Kingdom,-3.481
-United Kingdom,-3.092
-United States,51.001
-United States,-430.02
-United States,-188.096
-United States,79.182
-United States,-651.389
-United States,-912.933
-United States,266.804
-United States,-72.927
-United States,-304.975
+﻿country,year,price
+Australia,2011,46.213
+Australia,2012,47.697
+Australia,2013,50.133
+Australia,2014,49.584
+Australia,2015,47.509
+Australia,2016,46.128
+Australia,2017,51.446
+Australia,2018,48.945
+Australia,2019,51.638
+Brazil,2011,23.517
+Brazil,2012,44.158
+Brazil,2013,65.139
+Brazil,2014,76.654
+Brazil,2015,74.979
+Brazil,2016,53.096
+Brazil,2017,61.657
+Brazil,2018,51.345
+Brazil,2019,56.701
+Canada,2011,54.116
+Canada,2012,55.647
+Canada,2013,52.733
+Canada,2014,57.712
+Canada,2015,63.711
+Canada,2016,60.146
+Canada,2017,53.875
+Canada,2018,60.529
+Canada,2019,61.212
+China,2011,108.8
+China,2012,110.3
+China,2013,116.4
+China,2014,133.3
+China,2015,166.9
+China,2016,188.3
+China,2017,203.2
+China,2018,215.5
+China,2019,232.5
+Colombia,2011,6.097
+Colombia,2012,7.706
+Colombia,2013,13.678
+Colombia,2014,13.163
+Colombia,2015,17.276
+Colombia,2016,15.827
+Colombia,2017,9.521
+Colombia,2018,10.744
+Colombia,2019,12.07
+India,2011,96.592
+India,2012,75.184
+India,2013,46.185
+India,2014,43.185
+India,2015,40.515
+India,2016,50.212
+India,2017,50.256
+India,2018,50.257
+India,2019,47.98
+Indonesia,2011,53.929
+Indonesia,2012,50.66
+Indonesia,2013,54.133
+Indonesia,2014,56.432
+Indonesia,2015,49.518
+Indonesia,2016,55.394
+Indonesia,2017,52.298
+Indonesia,2018,53.533
+Indonesia,2019,48.926
+Mexico,2011,149.091
+Mexico,2012,150.689
+Mexico,2013,155.668
+Mexico,2014,162.162
+Mexico,2015,175.135
+Mexico,2016,180.498
+Mexico,2017,178.784
+Mexico,2018,187.507
+Mexico,2019,188.099
+Thailand,2011,103.302
+Thailand,2012,110.425
+Thailand,2013,112.296
+Thailand,2014,111.894
+Thailand,2015,119.747
+Thailand,2016,117.496
+Thailand,2017,112.925
+Thailand,2018,109.279
+Thailand,2019,114.856
+United Kingdom,2011,146.499
+United Kingdom,2012,100.17
+United Kingdom,2013,95.843
+United Kingdom,2014,100.893
+United Kingdom,2015,99.875
+United Kingdom,2016,143.356
+United Kingdom,2017,136.746
+United Kingdom,2018,131.49
+United Kingdom,2019,131.276
+United States,2011,1025.255
+United States,2012,1237.792
+United States,2013,1137.688
+United States,2014,1138.631
+United States,2015,1346.599
+United States,2016,1391.114
+United States,2017,1308.884
+United States,2018,1482.189
+United States,2019,1598.303

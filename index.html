@@ -5,11 +5,12 @@
     <title>World Enerngy Consumption</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <!-- <link rel="stylesheet" href="css/default.css"> -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/topojson.v2.min.js"></script>
     <style>
         #bar .axis .domain {
             display: none;
@@ -30,6 +31,61 @@
             stroke: #ccc;
             stroke-width: 2px;
         }
+
+        #showreel svg {
+            font-family: "Helvetica Neue", Helvetica;
+        }
+
+        #showreel .line {
+            fill: none;
+            stroke: #000;
+            stroke-width: 2px;
+        }
+
+        #cmap svg rect {
+            fill: #2A2C39;
+            /* map background colour */
+        }
+
+        #cmap .country {
+            fill: #d0d0d0;
+            /* country colour */
+            stroke: #2A2C39;
+            /* country border colour */
+            stroke-width: 1;
+            /* country border width */
+        }
+
+        #cmap .country-on {
+            fill: #4B5358;
+            /* highlight colour for selected country */
+        }
+
+        #cmap .data-country {
+            fill: #50C878
+        }
+
+        #cmap .countryLabel {
+            display: none;
+            /* hide all country labels by default */
+        }
+
+        #cmap .countryName {
+            fill: #FFFAFF;
+            /* country label text colour */
+        }
+
+        #cmap .countryLabelBg {
+            fill: #30BCED;
+            /* country label background colour */
+        }
+        #scatterplot .tick {
+        font-size: 8pt;
+      }
+       #scatterplot .axis-label {
+        fill: #50C878;
+        font-size: 10pt;
+      }
     </style>
 </head>
 
@@ -39,7 +95,26 @@
         <div class="row">
             <div class="col-lg-12 col-12 mb-3">
                 <div class="card">
-                    <div class="card-header">World Map Chart</div>
+                    <div class="card-header">World Map Energy Consumption 2019
+                        <div class="form-inline">
+                            <label for="metric">Metric</label>
+                            <select value="Gryffindor" id="metric" onchange="drawCMap(event.target.value);"
+                                class="form-control-sm ml-2">
+                                <option>biofuel_electricity</option>
+                                <option>coal_electricity</option>
+                                <option>fossil_electricity</option>
+                                <option>gas_electricity</option>
+                                <option>hydro_electricity</option>
+                                <option>nuclear_electricity</option>
+                                <option>oil_electricity</option>
+                                <option>other_renewable_electricity</option>
+                                <option>other_renewable_exc_biofuel_electricity</option>
+                                <option>renewables_electricity</option>
+                                <option>solar_electricity</option>
+                                <option>wind_electricity</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <div id="cmap"></div>
                     </div>
@@ -51,15 +126,6 @@
                 <div class="card">
                     <div class="card-header d-flex align-items-center justify-content-between">
                         <h6 class="m-0">Bar Chart</h6>
-                        <!-- <div class="form-inline">
-                                <label for="house">House</label>
-                                <select value="Gryffindor" id="house" onchange="drawHeatMap(event.target.value);" class="form-control-sm ml-2">
-                                    <option>Gryffindor</option>
-                                    <option>Hufflepuff</option>
-                                    <option>Ravenclaw</option>
-                                    <option>Slytherin</option>
-                                </select>
-                            </div> -->
                     </div>
                     <div class="card-body">
                         <div id="bar">
@@ -90,12 +156,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-12 col-12 mb-3">
+            <div class="col-lg-6 col-12 mb-3">
                 <div class="card">
-                    <div class="card-header">Tree Chart</div>
+                    <div class="card-header">Electricity Generation from 2011-2019</div>
                     <div class="card-body">
-                        <div id="dndTree"></div>
-                        <div id="tree-table-container" class="text-center">
+                        <div id="stream"></div>
+                        <!-- <div id="tree-table-container" class="text-center">
                             <table class="table table-hover" id="tree-table">
                                 <tr class="head">
                                     <td>First Node</td>
@@ -105,7 +171,15 @@
                                     <td>Fifth Node</td>
                                 </tr>
                             </table>
-                        </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-12 mb-3">
+                <div class="card">
+                    <div class="card-header">Electricity Consumption from 2011-2019</div>
+                    <div class="card-body">
+                        <div id="stream2"></div>
                     </div>
                 </div>
             </div>
@@ -115,32 +189,67 @@
                 <div class="card">
                     <div class="card-header">Bubble Chart</div>
                     <div class="card-body">
-                        <div id="bubbleChart"></div>
+                        <div id="bubble"></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-lg-12 col-12 mb-3">
                 <div class="card">
-                    <div class="card-header">Interactive Bar Chart</div>
+                    <div class="card-header">Show Reel</div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-lg-9 col-12">
-                                <div id="interactiveBar"></div>
-                            </div>
-                            <div class="col-lg-3 col-12">
-                                <div id="interactiveLine"></div>
+                                <div id="showreel"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div> -->
+    </div>
+    <div class="row">
+        <!-- <div class="col-lg-6 col-12 mb-3">
+            <div class="card">
+                <div class="card-header">Line Graph</div>
+                <div class="card-body">
+                    <div id="stream"></div>
+                    <!-- <div id="tree-table-container" class="text-center">
+                        <table class="table table-hover" id="tree-table">
+                            <tr class="head">
+                                <td>First Node</td>
+                                <td>Second Node</td>
+                                <td>Third Node</td>
+                                <td>Fourth Node</td>
+                                <td>Fifth Node</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="col-lg-12 col-12 mb-3">
+            <div class="card">
+                <div class="card-header">Scatter Plot of primary_energy_consumption Vs electricity_generation</div>
+                <div class="card-body">
+                    <div id="scatterplot"></div>
+                </div>
+            </div>
         </div>
     </div>
+    <script src="js/cmap.js"></script>
     <script src="js/bar.js"></script>
     <script src="js/collapseable.js"></script>
     <script src="js/piechart.js"></script>
+    <script src="js/stream.js"></script>
+    <script src="js/stream2.js"></script>
+    <script src="js/bubble.js"></script>
+    <script src="js/scatterplot.js"></script>
+    <script>
+        drawCMap("biofuel_electricity");
+    </script>
+    <!-- <script src="js/showreel.js"></script> -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
@@ -175,12 +284,5 @@
 
 </html>
 
-<a href="./bar.html">Stack Bar</a>
-<a href="./bubblechart.html">Bubble Map</a>
 <a href="./showreel.html">Show Reel</a>
-<a href="./stream.html">Stream Graph</a>
 <a href="./cmap.html">C Map</a>
-<a href="./barchart.html">Bar Chart</a>
-<a href="./collapseable.html">collapseable</a>
-<a href="./ElectricityConsumptionstream2.html">Energy Consumption Stream</a>
-<a href="./piechart.html">Pie Chart</a>

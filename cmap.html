@@ -69,7 +69,7 @@ g.call(d3.axisBottom(x)
     .remove();
 
 d3.queue()
-    .defer(d3.json, "https://d3js.org/us-10m.v1.json")
+    .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
     .defer(d3.csv, "cmapdata.csv", function(d) { unemployment.set(d.country, +d.rate); })
     .await(ready);
 

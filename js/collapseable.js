@@ -460,7 +460,7 @@ var margin = { top: 20, right: 40, bottom: 30, left: 200 },
 // append the svg object to the body of the page
 // appends a 'group' element to 'svg'
 // moves the 'group' element to the top left margin
-var svg = d3.select("#collapsible").append("svg")
+var svg_col = d3.select("#collapsible").append("svg")
     .attr("width", width + margin.right + margin.left)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
@@ -477,7 +477,7 @@ var treemap = d3.tree().size([height, width]);
 // Assigns parent, children, height, depth
 root = d3.hierarchy(treeData, function (d) { return d.children; });
 root.x0 = height / 2;
-root.y0 = 0;
+root.y00 = 0;
 
 // Collapse after the second level
 root.children.forEach(collapse);
@@ -508,14 +508,14 @@ function update(source) {
     // ****************** Nodes section ***************************
 
     // Update the nodes...
-    var node = svg.selectAll('g.node')
+    var node = svg_col.selectAll('g.node')
         .data(nodes, function (d) { return d.id || (d.id = ++i); });
 
     // Enter any new modes at the parent's previous position.
     var nodeEnter = node.enter().append('g')
         .attr('class', 'node')
         .attr("transform", function (d) {
-            return "translate(" + source.y0 + "," + source.x0 + ")";
+            return "translate(" + source.y00 + "," + source.x0 + ")";
         })
         .on('click', click);
 
@@ -576,14 +576,14 @@ function update(source) {
     // ****************** links section ***************************
 
     // Update the links...
-    var link = svg.selectAll('path.link')
+    var link = svg_col.selectAll('path.link')
         .data(links, function (d) { return d.id; });
 
     // Enter any new links at the parent's previous position.
     var linkEnter = link.enter().insert('path', "g")
         .attr("class", "link")
         .attr('d', function (d) {
-            var o = { x: source.x0, y: source.y0 }
+            var o = { x: source.x0, y: source.y00 }
             return diagonal(o, o)
         });
 
@@ -607,7 +607,7 @@ function update(source) {
     // Store the old positions for transition.
     nodes.forEach(function (d) {
         d.x0 = d.x;
-        d.y0 = d.y;
+        d.y00 = d.y;
     });
 
     // Creates a curved (diagonal) path from parent to the child nodes

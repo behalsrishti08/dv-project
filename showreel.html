@@ -56,7 +56,7 @@ var area = d3.svg.area()
     .y1(function(d) { return y(d.price); });
 
 d3.csv("D3Showreel.csv", function(data) {
-  var parse = d3.time.format("%b %Y").parse;
+  var parse = d3.time.format("%Y").parse;
 
   // Nest stock values by symbol.
   symbols = d3.nest()
@@ -84,7 +84,7 @@ d3.csv("D3Showreel.csv", function(data) {
 
 function lines() {
   x = d3.time.scale().range([0, w - 60]);
-  y = d3.scale.linear().range([h / 4 - 20, 0]);
+  y = d3.scale.linear().range([h / 10 - 20, 0]);
 
   // Compute the minimum and maximum date across symbols.
   x.domain([
@@ -93,7 +93,7 @@ function lines() {
   ]);
 
   var g = svg.selectAll(".symbol")
-      .attr("transform", function(d, i) { return "translate(0," + (i * h / 4 + 10) + ")"; });
+      .attr("transform", function(d, i) { return "translate(0," + (i * h / 10 + 10) + ")"; });
 
   g.each(function(d) {
     var e = d3.select(this);
@@ -125,17 +125,18 @@ function lines() {
           .data(function(d) { return [d.values[k], d.values[k]]; })
           .attr("transform", function(d) { return "translate(" + x(d.date) + "," + y(d.price) + ")"; });
     });
+    
   }
 
   var k = 1, n = symbols[0].values.length;
   d3.timer(function() {
     draw(k);
-    if ((k += 2) >= n - 1) {
+    if ((k += 1) >= n - 1) {
       draw(n - 1);
       setTimeout(horizons, 500);
       return true;
     }
-  });
+  }, 1000, 1000);
 }
 
 function horizons() {
