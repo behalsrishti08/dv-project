@@ -1,0 +1,19 @@
+#Comparing performance of all models
+acc_dict = {}
+algorithms= [first_model,second_model,third_model,forth_model,fifth_model,sixth_model]
+names_of_algo= ["first_model","second_model", "third_model","forth_model","fifth_model","sixth_model"]
+for i in range(len(algorithms)):
+    acc_dict[names_of_algo[i]] = test_data_accuracy[i]
+
+acc_dict
+#Plot performance comparison bar plot
+sns.barplot(list(acc_dict.keys()), list(acc_dict.values()))
+plt.title("Comparison of accuracy among baseline tree models")
+plt.ylabel("Test set accuracy")
+plt.savefig("images/perfcomparison")
+
+plt.bar(Accuracy_of_Testmodels)
+plt.title("Comparison of accuracy among baseline tree models")
+plt.ylabel("Test set accuracy")
+plt.savefig("images/perfcomparison")
+Accuracy_of_Testmodels.Accuracy_of_test_data[]
