@@ -65,7 +65,7 @@ d3.csv("D3Showreel.csv", function(data) {
 
 function lines() {
   x = d3.scaleTime().range([0, w - 60]);
-  y = d3.scaleLinear().range([h / 10 - 20, 0]);
+  y = d3.scaleLinear().range([h / 4 - 20, 0]);
 
   // Compute the minimum and maximum date across symbols.
   x.domain([
@@ -74,7 +74,7 @@ function lines() {
   ]);
 
   var g = svg_showreel.selectAll(".symbol")
-      .attr("transform", function(d, i) { return "translate(0," + (i * h / 4 + 10) + ")"; });
+      .attr("transform", function(d, i) { return "translate(0," + (i * h / 4 - 20) + ")"; });
 
   g.each(function(d) {
     var e = d3.select(this);
